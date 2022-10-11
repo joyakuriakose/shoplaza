@@ -5,11 +5,12 @@ import '../constants/constants.dart';
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
   final Color color;
+  final TextEditingController controller;
 
   const TextFieldContainer({
     Key? key,
     required this.child,
-    this.color = kGreenLightColor,
+    this.color = kGreenLightColor, required this.controller,
   }) : super(key: key);
 
   @override

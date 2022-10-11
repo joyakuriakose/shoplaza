@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:provider/provider.dart';
 
 import '../components/buttonfield.dart';
 import '../components/roundedinputfield.dart';
 import '../components/textfieldcontainer.dart';
 import '../constants/constants.dart';
+import '../services/firebaseauth.dart';
 import '../views/home_page_view.dart';
 
 // void main() {
@@ -17,7 +19,23 @@ import '../views/home_page_view.dart';
 //   ));
 // }
 
-class ScreenLogin extends StatelessWidget {
+class ScreenLogin extends StatefulWidget {
+  static String routeName = '/signup-email-password';
+  @override
+  _ScreenLoginState createState() => _ScreenLoginState();
+}
+
+class _ScreenLoginState extends State<ScreenLogin> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void loginUser() {
+    context.read<FirebaseAuthMethods>().loginWithEmail(
+      email: emailController.text,
+      password: passwordController.text,
+      context: context,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -69,10 +87,12 @@ class ScreenLogin extends StatelessWidget {
               ),
               SizedBox(height: 50),
               RoundedInputField(
-                labelText: "User ID",
+                controller: emailController,
+                labelText: "Enter Your Email ID",
                 onChanged: (value) {},
               ),
               TextFieldContainer(
+                controller: passwordController,
                 child: TextField(
                   decoration: InputDecoration(
                       labelText: "Password",
@@ -90,7 +110,7 @@ class ScreenLogin extends StatelessWidget {
               SizedBox(height: 50),
               GestureDetector(
 
-                  
+
                 onTap: () {
                   Get.to(() => HomePageView(), transition: Transition.fade);
 

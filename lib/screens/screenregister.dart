@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:provider/provider.dart';
 
 import '../components/buttonfield.dart';
 import '../components/roundedinputfield.dart';
 import '../components/textfieldcontainer.dart';
 import '../constants/constants.dart';
+import '../services/firebaseauth.dart';
 
 // void main() {
 //   runApp(MaterialApp(
@@ -15,7 +17,25 @@ import '../constants/constants.dart';
 //   ));
 // }
 
-class ScreenRegister extends StatelessWidget {
+class ScreenRegister extends StatefulWidget {
+  static String routeName = '/signup-email-password';
+
+  @override
+  _ScreenRegisterState createState() => _ScreenRegisterState();
+}
+
+class _ScreenRegisterState extends State<ScreenRegister> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void signUpUser() async {
+    context.read<FirebaseAuthMethods>().signUpWithEmail(
+          email: emailController.text,
+          password: passwordController.text,
+          context: context,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -69,8 +89,10 @@ class ScreenRegister extends StatelessWidget {
               RoundedInputField(
                 labelText: "User ID",
                 onChanged: (value) {},
+                controller: emailController,
               ),
               TextFieldContainer(
+                controller: passwordController,
                 child: TextField(
                   decoration: InputDecoration(
                       labelText: "Password",
@@ -89,12 +111,10 @@ class ScreenRegister extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.to(() => ScreenRegister(), transition: Transition.fade);
-
                 },
                 child: ButtonField(
                   text: "REGISTER",
                   press: () {},
-
                 ),
               )
             ],
@@ -104,5 +124,3 @@ class ScreenRegister extends StatelessWidget {
     );
   }
 }
-
-

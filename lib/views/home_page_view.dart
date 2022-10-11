@@ -19,7 +19,7 @@ class HomePageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: const Icon(Icons.arrow_back),
         actions: [
           IconButton(
             onPressed: () {
@@ -38,7 +38,7 @@ class HomePageView extends StatelessWidget {
               children: [
                 const Expanded(
                   child: Text(
-                    "Online Shop",
+                    "Welcome to ShoPlaza",
                     style: TextStyle(
                         fontFamily: "avenir",
                         fontSize: 32,

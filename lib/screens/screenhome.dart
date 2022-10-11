@@ -55,7 +55,8 @@ class ScreenHome extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenLogin()));
+                                  Navigator.pushNamed(context, ScreenLogin.routeName);
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenLogin()));
                                 },
                                 style: ElevatedButton.styleFrom(
                                     primary: kSecondaryColor,
@@ -73,7 +74,8 @@ class ScreenHome extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 10),
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenRegister()));
+                                //Navigator.pushNamed(context, ScreenRegister().routeName);
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenRegister()));
                               },
                               style: ElevatedButton.styleFrom(
                                   primary: kGreenLightColor,
